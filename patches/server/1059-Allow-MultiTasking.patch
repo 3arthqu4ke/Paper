@@ -1,0 +1,23 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: 3arthqu4ke <56741599+3arthqu4ke@users.noreply.github.com>
+Date: Sun, 14 Jan 2024 20:23:42 +0100
+Subject: [PATCH] Allow MultiTasking
+
+
+diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+index 65bb221993147a558995b36fb835f7b82e0eb4bd..1a31f76b8f2cda460ac8aefad31eb16bb7904eaf 100644
+--- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
++++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+@@ -2095,9 +2095,9 @@ public class ServerGamePacketListenerImpl extends ServerCommonPacketListenerImpl
+                 return;
+             }
+             // CraftBukkit end
+-            if (this.player.getInventory().selected != packet.getSlot() && this.player.getUsedItemHand() == InteractionHand.MAIN_HAND) {
+-                this.player.stopUsingItem();
+-            }
++            //if (this.player.getInventory().selected != packet.getSlot() && this.player.getUsedItemHand() == InteractionHand.MAIN_HAND) {
++            //    this.player.stopUsingItem();
++            //}
+ 
+             this.player.getInventory().selected = packet.getSlot();
+             this.player.resetLastActionTime();
