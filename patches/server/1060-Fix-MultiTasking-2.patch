@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: 3arthqu4ke <56741599+3arthqu4ke@users.noreply.github.com>
+Date: Sun, 14 Jan 2024 22:04:24 +0100
+Subject: [PATCH] Fix MultiTasking #2
+
+
+diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+index 1a31f76b8f2cda460ac8aefad31eb16bb7904eaf..c091e6cb6c15b661ecce1a50e738824f3427bfb5 100644
+--- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
++++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
+@@ -1904,7 +1904,7 @@ public class ServerGamePacketListenerImpl extends ServerCommonPacketListenerImpl
+ 
+                     if (blockposition.getY() < i) {
+                         if (this.awaitingPositionFromClient == null && this.player.distanceToSqr((double) blockposition.getX() + 0.5D, (double) blockposition.getY() + 0.5D, (double) blockposition.getZ() + 0.5D) < 64.0D && (worldserver.mayInteract(this.player, blockposition)  || (worldserver.paperConfig().spawn.allowUsingSignsInsideSpawnProtection && worldserver.getBlockState(blockposition).getBlock() instanceof net.minecraft.world.level.block.SignBlock))) { // Paper - sign check
+-                            this.player.stopUsingItem(); // CraftBukkit - SPIGOT-4706
++                            //this.player.stopUsingItem(); // CraftBukkit - SPIGOT-4706
+                             InteractionResult enuminteractionresult = this.player.gameMode.useItemOn(this.player, worldserver, itemstack, enumhand, movingobjectpositionblock);
+ 
+                             if (enumdirection == Direction.UP && !enuminteractionresult.consumesAction() && blockposition.getY() >= i - 1 && ServerGamePacketListenerImpl.wasBlockPlacementAttempt(this.player, itemstack)) {
